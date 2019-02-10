@@ -13,6 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->prefix('system')->group(function () {
+	Route::prefix('v1')->group(function () {
+		Route::get('/user', function (Request $request) {
+		    return $request->user();
+		});
+
+		Route::prefix('numbers')->group(function () {
+			Route::post('','\App\Api\V1\Numbers\Controllers\NumbersController@save');
+		});
+	});
 });
+
+
+	
