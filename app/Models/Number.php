@@ -7,7 +7,7 @@ use App\Models\User;
 
 class Number extends Model
 {
-    protected $fillable = ['bought_by', 'number'];
+    protected $fillable = ['bought_by', 'number', 'device_id'];
 
     protected $casts =
     [

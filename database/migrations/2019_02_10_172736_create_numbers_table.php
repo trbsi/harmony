@@ -15,7 +15,8 @@ class CreateNumbersTable extends Migration
     {
         Schema::create('numbers', function (Blueprint $table) {
             $table->increments('id');
-            $table->binary('number');
+            $table->decimal('number', 20, 0)->unique();
+            $table->string('device_id', 20);
             $table->unsignedInteger('bought_by')->nullable();
             $table->timestamps();
 
@@ -24,6 +25,7 @@ class CreateNumbersTable extends Migration
             ->on('users')
             ->onDelete('cascade');
 
+            $table->index(['number']);
         });
     }
 
